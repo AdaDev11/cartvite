@@ -23,7 +23,7 @@ const OrderForm = observer(() => {
       <Modal opened={!!selectedProduct} onClose={() => setSelectedProduct(null)} title={selectedProduct.title}>
         <Image src={selectedProduct.images[0]} alt={selectedProduct.title} height={200} fit="cover" />
         <Text>{selectedProduct.description}</Text>
-        <Text width={700} color="blue">{selectedProduct.price}$</Text>
+        <Text>{selectedProduct.price}$</Text>
         <Button variant="light" color="blue" fullWidth mt="md" onClick = {() => productStore.addToCart(selectedProduct)}>Add to Cart</Button>
     </Modal>
     )}
@@ -40,7 +40,7 @@ const OrderForm = observer(() => {
               <Image src={product.images[0]} alt={product.title} width={50} height={50} />
                 <Stack style={{ flex: 1}}>
                   <Text>{product.title}</Text>
-                <Group position="center">
+                <Group>
                   <Button onClick={() => productStore.changeQuantity(product.id, quantity - 1)}>-</Button>
                   <Text>{quantity}</Text>
                   <Button onClick={() => productStore.changeQuantity(product.id, quantity + 1)}>+</Button>
