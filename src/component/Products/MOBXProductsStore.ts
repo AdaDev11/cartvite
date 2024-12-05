@@ -1,3 +1,4 @@
+import { Product } from './MOBXProductsStore';
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 
@@ -54,6 +55,13 @@ class ProductStore {
     }
   };
 
+  updateQuantity = (productId: number, quantity: number) => {
+    const item = this.cart.find((cartItem) => cartItem.product.id === productId);
+    if(item) {
+      item.quantity = qunatity;
+    };
+  };
+
   get totalPrice () {
     return this.cart.reduce((sum, item) => sum + item.product.price * item.quantity,0);
   };
@@ -74,3 +82,4 @@ class ProductStore {
 
 const productStore = new ProductStore();
 export default productStore;
+export default interface Product;
