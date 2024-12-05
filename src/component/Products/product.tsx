@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import productStore from "./MOBXProductsStore";
+import Product from "./MOBXProductsStore";
 import { Card, Image, Pagination, Loader, Text, Modal, Button, Stack, Divider, Group } from "@mantine/core";
 import '@mantine/core/styles.css';
 
