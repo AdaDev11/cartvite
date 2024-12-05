@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import productStore from "./MOBXProductsStore";
-import Product from "./MOBXProductsStore";
 import { Card, Image, Pagination, Loader, Text, Modal, Button, Stack, Divider, Group } from "@mantine/core";
 import '@mantine/core/styles.css';
 
 const OrderForm = observer(() => {
+  interface Product {
+    id: number;
+    title: string;
+    category: string;
+    price: number;
+    images: string[];
+    description: string;
+  }
+
   useEffect(() => {
     productStore.fetchProducts();
   }, []);
