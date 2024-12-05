@@ -33,7 +33,7 @@ const OrderForm = observer(() => {
       {productStore.cart.length === 0 ? (
         <Text>Cart is empty</Text>
       ) : (
-        <Stack spacing="lg">
+        <Stack>
         {productStore.cart.map(({ product, quantity }) => (
           <Card key={product.id} shadow="sm" padding="lg" radius="md">
             <Group>
@@ -52,7 +52,7 @@ const OrderForm = observer(() => {
           </Card>
         ))}
         <Divider />
-        <Text weight={700} size="xl">Total: {productStore.totalPrice.toFixed(2)}$</Text>
+        <Text style={{weight: '700px'}} size="xl">Total: {productStore.totalPrice.toFixed(2)}$</Text>
         <Button onClick = {() => alert("O")}>Order</Button>
         </Stack>
       )}
@@ -79,7 +79,7 @@ const OrderForm = observer(() => {
             <Card.Section>
               <Image
                 src={product.images && product.images[0] ? product.images[0] : ""}
-                alt={product.name}
+                alt={product.title}
                 height={160}
                 fit="cover"
                 
