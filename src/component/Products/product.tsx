@@ -3,7 +3,6 @@ import { observer } from "mobx-react-lite";
 import productStore from "./MOBXProductsStore";
 import { Card, Image, Pagination, Loader, Text, Modal, Button, Stack, Divider, Group } from "@mantine/core";
 import '@mantine/core/styles.css';
-import { useDisclosure } from '@mantine/hooks';
 
 const OrderForm = observer(() => {
   useEffect(() => {
@@ -13,7 +12,6 @@ const OrderForm = observer(() => {
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null> (null);
   const [cartOpened, setCartOpened] = useState(false);
-  const [opened, setOpened] = useState(false);
 
   const handleOpenCart = () => setCartOpened(true);
   const handleCloseCart = () => setCartOpened(false);
