@@ -76,10 +76,7 @@ class ProductStore {
   removeFromCart = (id: number) => {
     this.cart = this.cart.filter((cartItem) => cartItem.product.id !== id)
   };
-
-
 }
 
 const productStore = new ProductStore();
-export default productStore;
-export default interface Product;
+export default productStore, Product;
