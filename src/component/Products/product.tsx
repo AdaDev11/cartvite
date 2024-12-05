@@ -23,7 +23,7 @@ const OrderForm = observer(() => {
       <Modal opened={!!selectedProduct} onClose={() => setSelectedProduct(null)} title={selectedProduct.title}>
         <Image src={selectedProduct.images[0]} alt={selectedProduct.title} height={200} fit="cover" />
         <Text>{selectedProduct.description}</Text>
-        <Text width={700} style={{padding: '10px', border: '1px solid black', alighnItem: 'center', margin: '10px'}} color="blue">{selectedProduct.price}$</Text>
+        <Text width={700} color="blue">{selectedProduct.price}$</Text>
         <Button variant="light" color="blue" fullWidth mt="md" onClick = {() => productStore.addToCart(selectedProduct)}>Add to Cart</Button>
     </Modal>
     )}
@@ -35,8 +35,8 @@ const OrderForm = observer(() => {
       ) : (
         <Stack spacing="lg">
         {productStore.cart.map(({ product, quantity }) => (
-          <Card key={product.id} shadow="sm" padding="lg" radius="md" withBorder>
-            <Group position="apart">
+          <Card key={product.id} shadow="sm" padding="lg" radius="md">
+            <Group>
               <Image src={product.images[0]} alt={product.title} width={50} height={50} />
                 <Stack style={{ flex: 1}}>
                   <Text>{product.title}</Text>
@@ -75,7 +75,7 @@ const OrderForm = observer(() => {
                 padding: "40px",
               }} >
         {productStore.products.map((product) => (
-          <Card key={product.id} withBorder>
+          <Card key={product.id}>
             <Card.Section>
               <Image
                 src={product.images && product.images[0] ? product.images[0] : ""}
@@ -91,7 +91,7 @@ const OrderForm = observer(() => {
             <Text>
               ${product.price}
             </Text>
-            <Group position='apart' mt="md">
+            <Group>
               <Button fullWidth mt="md" onClick={() => setSelectedProduct(product)}>View</Button><br/>
               <Button fullWidth mt="md" onClick = {() => productStore.addToCart(product)}>Add to Cart</Button>
             </Group>
