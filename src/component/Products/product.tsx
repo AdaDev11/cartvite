@@ -7,7 +7,6 @@ import '@mantine/core/styles.css';
 const OrderForm = observer(() => {
   useEffect(() => {
     productStore.fetchProducts();
-    console.log(productStore.cart);
   }, []);
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null> (null);
