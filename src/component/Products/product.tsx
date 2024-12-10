@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import productStore from "./MOBXProductsStore";
 import { Card, Image, Pagination, Loader, Text, Modal, Button, Stack, Divider, Group } from "@mantine/core";
 import '@mantine/core/styles.css';
+import { debounce } from 'lodash';
 
 const OrderForm = observer(() => {
   interface Product {
@@ -23,6 +24,27 @@ const OrderForm = observer(() => {
 
   const handleOpenCart = () => setCartOpened(true);
   const handleCloseCart = () => setCartOpened(false);
+  const [search, setSearch] = useState("");
+  const [filterPriceProducts, setFilterPriceProducts] = useState<Product | null> ([]);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const debouncedSearch = debounce((query) => {
+    productStore.searchProducts(query);
+  }, 300);
+  
+//  handele Search whis search, useState work input search
+  const handelSearch = (event) => {
+    const query = event.target.value;
+    setSearch(query);
+    console.log(query);
+    if(query.trim()) { 
+      debouncedSearch(query);
+    } else {
+      productStore.fetchProducts();
+    }
+  };
+
 
   return (
     <>
@@ -70,7 +92,31 @@ const OrderForm = observer(() => {
       <h1>Products</h1>
 
       <Button onClick = {handleOpenCart}>View Cart</Button>
+      <br/>
+      <input 
+      type = "text"
+      placeholder = "Search products"
+      value = {search}
+      onChange = {handelSearch}
+      />
 
+
+      <Button onClick={() => handleCategory("beauty")}>Beauty</Button>
+      <Button onClick={() => handleCategory("fragrances")}>Fragrances</Button>
+      <Button onClick={() => handleCategory("furniture")}>Furniture</Button>
+      <Button onClick={() => handleCategory("groceries")}>Groceries</Button>
+      <Button onClick={() => handleCategory("home-decoration")}>Home-decoration</Button>
+      <Button onClick={() => handleCategory("kitchen-accessories")}>Kitchen-accessories</Button>
+      <Button onClick={() => handleCategory("laptops")}>Laptops</Button>
+      <Button onClick={() => handleCategory("mens-shirts")}>Mens-shirts</Button>
+      <Button onClick={() => handleCategory("mens-shoes")}>Mens-shoes</Button>
+      <Button onClick={() => handleCategory("mens-watches")}>Mens-watches</Button>
+      <Button onClick={() => handleCategory("motorcycle")}>Motorcycle</Button>
+      <Button onClick={() => handleCategory("skin-care")}>Skin-care</Button>
+      <Button onClick={() => handleCategory("smartphones")}>Smartphones</Button>
+      
+
+      <hr/>
       {productStore.isLoading ? (
         <Loader size="lg" />
             ) : (
