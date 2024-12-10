@@ -19,8 +19,8 @@ class ProductStore {
   searchQuery: string = "";
   selectedCategory: string | null = "";
   cart: {product: Product, quantity: number}[] = [];
-  query: string;
-  category: string;
+  query: string = "";
+  category: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -65,7 +65,7 @@ class ProductStore {
       this.products = res.data.products
     }
     catch {
-      console.error("Categories fetching error " + error);
+      console.error("Categories fetching error ", error);
     } 
     finally {
       this.isLoading = false;
