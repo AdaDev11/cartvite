@@ -1,4 +1,3 @@
-import { Product } from './MOBXProductsStore';
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 
@@ -20,6 +19,8 @@ class ProductStore {
   searchQuery: string = "";
   selectedCategory: string | null = "";
   cart: {product: Product, quantity: number}[] = [];
+  query: string;
+  category: string;
 
   constructor() {
     makeAutoObservable(this);
@@ -40,6 +41,48 @@ class ProductStore {
     }
   }
 
+  async searchProducts(query) {
+    this.isLoading = true;
+    try {
+      const res = await axios.get(`https://dummyjson.com/products/search?q=${query}`);
+      console.log("search fetching data: " + res.data);
+      this.products = res.data.products;
+      console.log("products search " + this.products);
+      this.totalProducts = res.data.total;
+    } catch(error) {
+      console.error("Search error: ", error);
+    } finally {
+      this.isLoading = false;
+    };
+  };
+
+ 
+
+  async filteredPrice (minPrice, maxPrice) {
+    this.isLoading = true;
+    try {
+      const res = await axios.get(`https://dummyjson.com/products?minPrice=${minPrice}&maxPrice=${maxPrice}`)
+      this.products = res.data.products;
+      console.log(res + "jhknm " + this.products);
+    } catch {
+      console.error("Price filter error: ", error);
+    }
+  }
+
+  async filterCategories (category) {
+    this.isLoading = true;
+    try {
+      const res = await axios.get(`https://dummyjson.com/products/category/${category}`);
+      this.products = res.data.products
+    }
+    catch {
+      console.error("Categories fetching error ", error);
+    } 
+    finally {
+      this.isLoading = false;
+    }
+  }
+
   setPage(page: number) {
     this.skip = (page - 1) * this.limit;
     this.fetchProducts();
@@ -53,13 +96,6 @@ class ProductStore {
     }else {
       this.cart.push({product, quantity: 1});
     }
-  };
-
-  updateQuantity = (productId: number, quantity: number) => {
-    const item = this.cart.find((cartItem) => cartItem.product.id === productId);
-    if(item) {
-      item.quantity = qunatity;
-    };
   };
 
   get totalPrice () {
@@ -76,7 +112,6 @@ class ProductStore {
   removeFromCart = (id: number) => {
     this.cart = this.cart.filter((cartItem) => cartItem.product.id !== id)
   };
-
 
 }
 
