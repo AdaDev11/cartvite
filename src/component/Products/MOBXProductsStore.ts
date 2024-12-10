@@ -19,8 +19,13 @@ class ProductStore {
   searchQuery: string = "";
   selectedCategory: string | null = "";
   cart: {product: Product, quantity: number}[] = [];
+<<<<<<< HEAD
   query: string;
   category: string;
+=======
+  query: string = "";
+  category: string = "";
+>>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
   constructor() {
     makeAutoObservable(this);
@@ -58,6 +63,7 @@ class ProductStore {
 
  
 
+<<<<<<< HEAD
   async filteredPrice (minPrice, maxPrice) {
     this.isLoading = true;
     try {
@@ -69,6 +75,8 @@ class ProductStore {
     }
   }
 
+=======
+>>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
   async filterCategories (category) {
     this.isLoading = true;
     try {

@@ -28,7 +28,10 @@ const OrderForm = observer(() => {
   const [filterPriceProducts, setFilterPriceProducts] = useState<Product | null> ([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+<<<<<<< HEAD
   // const [filterPrice. setFilterPrice] = useState(0);
+=======
+>>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
   const debouncedSearch = debounce((query) => {
     productStore.searchProducts(query);
@@ -46,6 +49,7 @@ const OrderForm = observer(() => {
     }
   };
 
+<<<<<<< HEAD
   const handleCategory = async (category) => {
     await productStore.filterCategories(category);
   };
@@ -59,6 +63,8 @@ const OrderForm = observer(() => {
     }
   };
 
+=======
+>>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
   return (
     <>
@@ -114,6 +120,7 @@ const OrderForm = observer(() => {
       onChange = {handelSearch}
       />
 
+<<<<<<< HEAD
       <span>Price</span>
       <select onChange = {(e) => handlePriceFilter(e)}>
           <option value="1-10">from 1$-10$</option>
@@ -142,6 +149,8 @@ const OrderForm = observer(() => {
       <Button onClick={handlePriceFilter}>Filter</Button>
       
 
+=======
+>>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
       <Button onClick={() => handleCategory("beauty")}>Beauty</Button>
       <Button onClick={() => handleCategory("fragrances")}>Fragrances</Button>
