@@ -25,19 +25,11 @@ const OrderForm = observer(() => {
   const handleOpenCart = () => setCartOpened(true);
   const handleCloseCart = () => setCartOpened(false);
   const [search, setSearch] = useState("");
-  const [filterPriceProducts, setFilterPriceProducts] = useState<Product | null> ([]);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-<<<<<<< HEAD
-  // const [filterPrice. setFilterPrice] = useState(0);
-=======
->>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
   const debouncedSearch = debounce((query) => {
     productStore.searchProducts(query);
   }, 300);
   
-//  handele Search whis search, useState work input search
   const handelSearch = (event) => {
     const query = event.target.value;
     setSearch(query);
@@ -48,23 +40,10 @@ const OrderForm = observer(() => {
       productStore.fetchProducts();
     }
   };
-
-<<<<<<< HEAD
-  const handleCategory = async (category) => {
+  
+ const handleCategory = async (category) => {
     await productStore.filterCategories(category);
   };
-
-
-  const handlePriceFilter = async () => {
-    if (minPrice.trim() && maxPrice.trim()) {
-      await productStore.filteredPrice(minPrice, maxPrice);
-    } else {
-      console.log("Please provide valid price range");
-    }
-  };
-
-=======
->>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
   return (
     <>
@@ -119,38 +98,6 @@ const OrderForm = observer(() => {
       value = {search}
       onChange = {handelSearch}
       />
-
-<<<<<<< HEAD
-      <span>Price</span>
-      <select onChange = {(e) => handlePriceFilter(e)}>
-          <option value="1-10">from 1$-10$</option>
-          <option value="10-15">from 10$-15$</option>
-          <option value="20-30">from 20$-30$</option>
-          <option value="30-40">from 30$-40$</option>
-          <option value="40-50">from 40$-50$</option>
-          <option value="50-100">from 50$-100$</option>
-          <option value="100-1000">from 100$-1000$</option>
-          <option value="1000-infinity">Above 1000$</option>
-      </select>
-
-      <input
-        type="number"
-        placeholder="Min Price"
-        value={minPrice}
-        onChange={(e) => setMinPrice(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Max Price"
-        value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
-      />
-
-      <Button onClick={handlePriceFilter}>Filter</Button>
-      
-
-=======
->>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
 
       <Button onClick={() => handleCategory("beauty")}>Beauty</Button>
       <Button onClick={() => handleCategory("fragrances")}>Fragrances</Button>
