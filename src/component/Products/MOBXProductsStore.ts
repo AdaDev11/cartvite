@@ -17,16 +17,8 @@ class ProductStore {
   limit: number = 4;
   skip: number = 0;
   searchQuery: string = "";
-  selectedCategory: string | null = "";
   cart: {product: Product, quantity: number}[] = [];
-<<<<<<< HEAD
-  query: string;
-  category: string;
-=======
-  query: string = "";
-  category: string = "";
->>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
-
+  
   constructor() {
     makeAutoObservable(this);
   }
@@ -61,23 +53,7 @@ class ProductStore {
     };
   };
 
- 
-
-<<<<<<< HEAD
-  async filteredPrice (minPrice, maxPrice) {
-    this.isLoading = true;
-    try {
-      const res = await axios.get(`https://dummyjson.com/products?minPrice=${minPrice}&maxPrice=${maxPrice}`)
-      this.products = res.data.products;
-      console.log(res + "jhknm " + this.products);
-    } catch {
-      console.error("Price filter error: ", error);
-    }
-  }
-
-=======
->>>>>>> 498812af03cf00f41cb0cf87e8f7270053fcd988
-  async filterCategories (category) {
+ async filterCategories (category) {
     this.isLoading = true;
     try {
       const res = await axios.get(`https://dummyjson.com/products/category/${category}`);
